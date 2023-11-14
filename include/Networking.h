@@ -20,14 +20,14 @@ Related to Networking
 #define WIFI_PASSWORD "nilaicapstonea"
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyCCac6HO8_6z6UloSV_YNJwGE-iJjIlrQM"
+#define API_KEY "AIzaSyDzNvvAtMkO320XdM1l3-n4BjTkvyI_Drs"
 
 // Insert Authorized Email and Corresponding Password
 #define USER_EMAIL "admin@capstonea9.id"
 #define USER_PASSWORD "nilaicapstonea"
 
 // Insert RTDB URLefine the RTDB URL
-#define DATABASE_URL "https://monitoring-web-app-8d4fd-default-rtdb.asia-southeast1.firebasedatabase.app/"
+#define DATABASE_URL "https://intellitank-a9-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
 
 // ===== User-Defined Object =====
