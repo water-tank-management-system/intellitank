@@ -1,0 +1,20 @@
+npm install firebase
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDzNvvAtMkO320XdM1l3-n4BjTkvyI_Drs",
+  authDomain: "intellitank-a9.firebaseapp.com",
+  databaseURL: "https://intellitank-a9-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "intellitank-a9",
+  storageBucket: "intellitank-a9.appspot.com",
+  messagingSenderId: "377162448828",
+  appId: "1:377162448828:web:a9e33c7aec90a13163b5b9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
