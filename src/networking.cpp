@@ -19,8 +19,10 @@ FirebaseConfig config;
 // Define Firebase JSON objects
 FirebaseJson json;
 
+/*
 // Create Software // Serial Object
 SoftwareSerial espSS(ESP_RX, ESP_TX);
+*/
 
 // Define NTP Client to get time
 WiFiUDP ntpUDP;
@@ -32,10 +34,12 @@ void initWiFi()
 {
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   // Serial.print("Connecting to WiFi ..");
+
   while (WiFi.status() != WL_CONNECTED)
   {
     // Serial.print('.');
-    delay(1000);
+    // delay(1000);
+    stateLED(1000, 1);
   }
   
   // Serial.println(WiFi.localIP());

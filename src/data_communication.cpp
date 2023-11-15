@@ -98,8 +98,7 @@ void sendDataLog()
   json.set(lvlLog.c_str(), String(water_level));
   json.set(turLog.c_str(), String(turbidity));
   json.set(timePath, String(timestamp));
-
-  // Serial.printf("Set json... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+  Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json);      
 }
 
 // Receive Boolean values from the database

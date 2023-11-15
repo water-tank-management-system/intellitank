@@ -29,7 +29,6 @@ Related to Networking
 // Insert RTDB URLefine the RTDB URL
 #define DATABASE_URL "https://intellitank-a9-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
-
 // ===== User-Defined Object =====
 
 // Define Firebase objects
@@ -40,8 +39,10 @@ extern FirebaseConfig config;
 // Define Firebase JSON objects
 extern FirebaseJson json;
 
+/*
 // Create Software Serial Object
 extern SoftwareSerial espSS;
+*/
 
 // Define NTP Client to get time
 extern WiFiUDP ntpUDP;

@@ -42,10 +42,10 @@ int timestamp;
 // ===== Variables Related to System Communication
 
 // System Readings Data Variables
-float temperature = 0,
-      water_level = 0,
-      water_flow = 0;
-int   turbidity = 0;
+int temperature = 0,
+    water_level = 0,
+    water_flow = 0,
+    turbidity = 0;
 
 // User State Data Variables
 int auto_mode = 0,

@@ -23,17 +23,11 @@ unsigned long previousMillis = 0; // millis() returns an unsigned long.
 
 void setup()
 {
-  // Baudrate for ESP-PC Communication
-  Serial.begin(9600);
-
-  // Baudrate for ESP - Arduino Communication
-  espSS.begin(9600);  
+  // Baudrate for UART Communication
+  Serial.begin(9600);  
 
   // Initialize the timestamp
-  timeClient.begin();
-
-  // init Random seed for random number
-  randomSeed(analogRead(0));
+  timeClient.begin();  
 
   // LED_BUILTIN initialize
   pinMode(LED_BUILTIN, OUTPUT);
@@ -70,34 +64,30 @@ void loop()
         state = RTDB_TX;
       }
       
+      delay(50);
       break;
     
     case RTDB_TX:
       // Send new readings to database
-      temperature = temp.toFloat();
-      water_level = level.toFloat();
-      water_flow = flow.toFloat();
-      turbidity = turb.toFloat();
+      temperature = temp.toInt();
+      water_level = level.toInt();
+      water_flow = flow.toInt();
+      turbidity = turb.toInt();
 
       /*
-      // temperature = random(10, 40) + ((float)random(0, 100) / 100.0);
-      // water_level = random(0, 60) + ((float)random(0, 100) / 100.0);
-      // water_flow  = random(0, 60) + ((float)random(0, 100) / 100.0);
+      // temperature = random(10, 40) + ((Int)random(0, 100) / 100.0);
+      // water_level = random(0, 60) + ((Int)random(0, 100) / 100.0);
+      // water_flow  = random(0, 60) + ((Int)random(0, 100) / 100.0);
       // turbidity = 5;
       */
 
       // Send values to database:
-      sendFloat(tmpPath, temperature);
-      sendFloat(lvlPath, water_level);
-      sendFloat(flwPath, water_flow);
+      sendInt(tmpPath, temperature);
+      sendInt(lvlPath, water_level);
+      sendInt(flwPath, water_flow);
       sendInt(turPath, turbidity);
-      
-      if ((millis() - previousMillis) >= interval)
-      {
-        sendDataLog();
-        stateLED(500, 1);
-        previousMillis = millis();
-      }
+
+      sendDataLog();                        
 
       /*
       if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0))
@@ -128,6 +118,7 @@ void loop()
       */
       
       state = RTDB_RX;
+      delay(50);
       break;
     
     case RTDB_RX:
@@ -162,6 +153,7 @@ void loop()
       */
 
       state = ESP_TX;
+      delay(50);
       break;
     
     case ESP_TX:
@@ -182,6 +174,7 @@ void loop()
       */
 
       state = ESP_RX;
+      delay(50);
       break;
   }
 }

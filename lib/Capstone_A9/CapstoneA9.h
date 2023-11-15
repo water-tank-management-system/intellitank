@@ -14,9 +14,9 @@ Capstone A9
 #include <ESP8266WiFi.h>
 #include <Firebase_ESP_Client.h>
 #include <Wire.h>
-#include <SoftwareSerial.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
+// #include <SoftwareSerial.h>
 
 // ===== User-Defined Constant =====
 
@@ -62,13 +62,10 @@ extern int timestamp;
 // ===== Variables Related to System Communication
 
 // System Readings Data Variables
-extern float  temperature,
-              water_level,
-              water_flow;
-extern int turbidity;
-extern int  automation,
-            dirty_state,
-            empty_state;
+extern int  temperature,
+            water_level,
+            water_flow,
+            turbidity;
 
 // User State Data Variables
 extern int  auto_mode,
