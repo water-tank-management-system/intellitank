@@ -119,21 +119,21 @@ const setupUI = (user) => {
 
     // Update page with new readings
     dbRefTmp.on('value', (snap) => {
-      tmpVal = snap.val().toFixed(2);
+      tmpVal = snap.val();
       tmpElement.innerText = tmpVal;
     });
 
     dbRefLvl.on('value', (snap) => {
-      lvlVal = snap.val().toFixed(2);
+      lvlVal = snap.val();
       lvlElement.innerText = lvlVal;
     });
 
     dbRefFlw.on('value', (snap) => {
-      flwElement.innerText = snap.val().toFixed(2);
+      flwElement.innerText = snap.val();
     });
 
     dbRefTur.on('value', (snap) => {
-      turVal = snap.val().toFixed(2);
+      turVal = snap.val();
       turElement.innerText = turVal;
     });
 

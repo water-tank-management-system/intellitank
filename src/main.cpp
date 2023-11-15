@@ -87,7 +87,10 @@ void loop()
       sendInt(flwPath, water_flow);
       sendInt(turPath, turbidity);
 
-      sendDataLog();                        
+      if (millis() - previousMillis >= interval || previousMillis == 0)
+      {        
+        sendDataLog();
+      }
 
       /*
       if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0))

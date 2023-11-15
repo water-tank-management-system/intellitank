@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Monitoring Demo Web-Apps</title>
+    <title>Intellitank - Capstone A9</title>
 
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
@@ -57,7 +57,7 @@
   <body>
     <!--TOP BAR-->
     <div class="topnav">
-      <h1>Water Tank Monitoring <i class="fas fa-clipboard-list"></i></h1>
+      <h1>Intellitank Dashboard <i class="fas fa-clipboard-list"></i></h1>
     </div>
 
     <!--LOGIN FORM-->
@@ -86,6 +86,7 @@
 
     <!--CONTENT (SENSOR READINGS)-->
     <div class="content-sign-in" id="content-sign-in" style="display: none">
+
       <!--LAST UPDATE-->
       <p>
         <span class="date-time">
@@ -118,6 +119,9 @@
       </p>
 
       <div id="cards-div">
+        
+        <h2>Water Tank Monitoring</h2>
+
         <div class="cards">
           <!-- TEMPERATURE -->
           <div class="card">
@@ -155,7 +159,10 @@
           </div>
         </div>
 
+        <h2>Water Tank Control</h2>
+
         <div class="cards">
+
           <!-- AUTOMATION -->
           <div class="card">
             <p>AUTOMATION</p>
@@ -226,11 +233,15 @@
           <p> DIRTY WATER INDICATOR </p>
           <div class="indicator" id="dirty-water-indicator" ></div>
         </div> -->
+        
         </div>
       </div>
 
       <!--GAUGES-->
       <div id="gauges-div">
+
+        <h2>Gauges</h2>
+
         <div class="cards">
           <!--WATER LEVEL-->
           <div class="card">
@@ -253,6 +264,9 @@
 
       <!--CHARTS-->
       <div id="charts-div" style="display: none">
+
+        <h2>Gauges</h2>
+
         <!--SET NUMBER OF READINGS INPUT FIELD-->
         <div>
           <p>Number of readings: <input type="number" id="charts-range" /></p>
