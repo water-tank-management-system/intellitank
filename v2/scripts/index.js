@@ -33,6 +33,18 @@ function plotValues(chart, timestamp, value) {
   }
 }
 
+// Service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/' })
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+
+
 // DOM elements
 const loginElement = document.querySelector('#login-form');
 const contentElement = document.querySelector('#content-sign-in');
@@ -273,6 +285,8 @@ const setupUI = (user) => {
       if (waterLevel < waterLevelThreshold) {
         // Set the indicator's color to red
         waterLevelIndicator.style.backgroundColor = 'red';
+        // Send notification
+        sendNotification('Reminder Volume!', 'Air hampir kosong, segera lakukan pengisian ulang!');
       } else {
         // Set the indicator's color to green (or any other color)
         waterLevelIndicator.style.backgroundColor = 'grey';
@@ -286,11 +300,47 @@ const setupUI = (user) => {
         // Change the dirty water indicator's color based on turbidity
         if (turbidity > turbidityThreshold) {
           dirtyWaterIndicator.style.backgroundColor = 'red';
+          // Send notification
+          sendNotification('Reminder Kekeruhan!', 'Air terdeteksi keruh, segera lakukan pembersihan!');
         } else {
           dirtyWaterIndicator.style.backgroundColor = 'grey';
         }
       });
     });
+
+    function sendNotification(title, body) {    
+      // Menggunakan Firebase Cloud Messaging untuk mengirim notifikasi
+
+      messaging.getToken().then((currentToken) => {
+        const payload = {
+            to: currentToken,
+            notification: {
+              title: title,
+              body: body
+            },
+        };
+    
+        // Kirim notifikasi dari server menggunakan token perangkat
+        fetch('https://fcm.googleapis.com/fcm/send', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'key=AAAAV9CiP7w:APA91bGzhqIY4VbFifrxK9VTLEo1dFAWK13ZEUa2GRBj-pbKSri1sXinKrHYJRvQG_NkR9EhYADaJCeCS7QCRBKVAWYaOzRsPanhcOoBnjGQWfnPD8HBSXTgGQUyDkzh3Ly4MBTdAGEe',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Berhasil mengirim notifikasi:', data);
+        })
+        .catch(error => {
+            console.error('Gagal mengirim notifikasi:', error);
+        });
+    })
+    .catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+    });
+    }
 
 
     // CHECKBOXES
