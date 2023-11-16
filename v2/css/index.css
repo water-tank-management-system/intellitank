@@ -440,6 +440,23 @@ button:hover {
     margin-bottom: 10px;
   }
 }
+input[type="checkbox"]:checked {
+  background-color: #4640DE; 
+  border: 1px solid #4640DE;  
+}
+
+/* Gaya checkbox yang tidak dicentang */
+input[type="checkbox"]:not(:checked) {
+  background-color: #f44336;  
+  border: 1px solid #f44336;  
+}
+#gauge-wl-desc {
+  text-align: center;
+}
+#gauge-water-level {
+  display: block;
+  margin: 0 auto;
+}
 .sensor-value {
   font-weight: 700;
   font-size: 32px;

@@ -486,7 +486,9 @@
             </div>
           </div>
 
-          <div class="content">
+          <div class="content" id="#cards-div">
+
+            <!-- Cards -->
             <div class="row">
               <div class="col-12">
                 <h2 class="content-title" id="monitoring-cards">
@@ -577,10 +579,8 @@
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- TANK CONTROL -->
-          <div class="content">
+            <!-- TANK CONTROL -->
             <div class="row">
               <div class="col-12">
                 <h2 class="content-title" id="tank-control">Tank Control</h2>
@@ -616,8 +616,13 @@
             </div>
           </div>
 
+          
+          <div class="content" id="controls-div">
+            
+          </div>
+
           <!-- GAUGES INDICATOR -->
-          <div class="content">
+          <div class="content" id="gauges-div">
             <div class="row">
               <div class="col-12">
                 <h2 class="content-title" id="gauges-indicator">
@@ -626,6 +631,22 @@
                 <h5 class="content-desc mb-4">
                   Gauges Indicator to Check Condition Visually
                 </h5>
+              </div>
+
+              <!-- WATER LEVEL -->
+              <div>
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc" id="gauge-wl-desc">Water Level</h5>
+                      <canvas id="gauge-water-level"></canvas>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Temperature -->
@@ -659,27 +680,11 @@
                   </div>
                 </div>
               </div>
-
-              <!-- WATER LEVEL -->
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="sensor-card">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div
-                      class="d-flex flex-column justify-content-between align-items-start"
-                    >
-                      <h5 class="content-desc">Water Level</h5>
-                      <canvas id="gauge-water-level"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
           <!-- CHARTS -->
-          <div class="content">
+          <div class="content" id="charts-div">
             <div class="row">
               <div class="col-12">
                 <h2 class="content-title" id="charts">Charts</h2>
@@ -696,7 +701,7 @@
               </div>
 
               <!-- Temperature Chart -->
-              <div class="col-12 col-md-6 col-lg-4">
+              <div>
                 <div class="sensor-card">
                   <div
                     class="d-flex justify-content-between align-items-center"
@@ -709,10 +714,12 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
+              </div>                        
+            </div>
+            
+            <div class="row">
               <!-- Water-Level Chart -->
-              <div class="col-12 col-md-6 col-lg-4">
+              <div>
                 <div class="sensor-card">
                   <div
                     class="d-flex justify-content-between align-items-center"
@@ -726,9 +733,11 @@
                   </div>
                 </div>
               </div>
-
+            </div>
+            
+            <div class="row">
               <!-- Water Flow Chart -->
-              <div class="col-12 col-md-6 col-lg-4">
+              <div>
                 <div class="sensor-card">
                   <div
                     class="d-flex justify-content-between align-items-center"
@@ -742,9 +751,11 @@
                   </div>
                 </div>
               </div>
-
+            </div>
+            
+            <div class="row">
               <!-- Turbidity Chart -->
-              <div class="col-12 col-md-6 col-lg-4">
+              <div>
                 <div class="sensor-card">
                   <div
                     class="d-flex justify-content-between align-items-center"
@@ -806,7 +817,6 @@
               </div>
             </form>
           </div>
-
         </div>
       </div>
     </div>
@@ -841,6 +851,8 @@
 
     <!-- Custom JS Scripts -->
     <script src="scripts/auth.js"></script>
+    <script src="scripts/charts-definition.js"></script>
+    <script src="scripts/gauges-definition.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>
