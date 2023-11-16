@@ -110,7 +110,7 @@
     <!--LOGIN FORM-->
     <form id="login-form" style="display: none">
       <div id="popup" class="popup">
-        <span class="close" onclick="closePopup()">&times;</span>
+        <span class="close-popup" onclick="closePopup()">&times;</span>
         <p id="popup-message"></p>
       </div>
 
@@ -149,16 +149,66 @@
       <div class="row">
         <div class="col-12 col-lg-3 col-navbar d-none d-xl-block">
           <aside class="sidebar">
-            <a href="index.html" class="sidebar-logo">
-              <div class="d-flex justify-content-start align-items-center">
-                <img src="../img/logo intellitank.png" alt="intellitank-logo" />
-                <span>Intellitank</span>
-              </div>
+            <div class="sidebar-logo">
+              <a href="index.html" class="sidebar-logo">
+                <div class="d-flex justify-content-start align-items-center">
+                  <img
+                    src="../img/logo intellitank.png"
+                    alt="intellitank-logo"
+                  />
+                  <span>Intellitank</span>
+                </div>
+              </a>
 
               <button id="toggle-navbar" onclick="toggleNavbar()">
                 <img src="./assets/img/global/navbar-times.svg" alt="" />
               </button>
-            </a>
+            </div>
+
+            <!--LAST UPDATE-->
+            <p class="date-time">
+              <span> Last update: <span id="lastUpdate"></span> </span>
+            </p>
+
+            <div class="checkbox-container">
+              <div class="checkbox-wrapper">
+                <label for="cards-checkbox">Cards:</label>
+                <div class="checkbox-input">
+                  <input
+                    type="checkbox"
+                    id="cards-checkbox"
+                    name="cards-checkbox"
+                    checked
+                  />
+                </div>
+              </div>
+
+              <div class="checkbox-wrapper">
+                <label for="gauges-checkbox">Gauges:</label>
+                <div class="checkbox-input">
+                  <input
+                    type="checkbox"
+                    id="gauges-checkbox"
+                    name="gauges-checkbox"
+                    checked
+                  />
+                </div>
+              </div>
+
+              <div class="checkbox-wrapper">
+                <label for="charts-checkbox">Charts:</label>
+                <div class="checkbox-input">
+                  <input
+                    type="checkbox"
+                    id="charts-checkbox"
+                    name="charts-checkbox"
+                    checked
+                  />
+                </div>
+              </div>
+            </div>
+
+            <hr />
 
             <h5 class="sidebar-title">Monitoring & Control</h5>
 
@@ -254,7 +304,11 @@
               <span>Tank Control</span>
             </a>
 
-            <a href="#" class="sidebar-item" onclick="toggleActive(this)">
+            <a
+              href="#gauges-indicator"
+              class="sidebar-item"
+              onclick="toggleActive(this)"
+            >
               <svg
                 width="24"
                 height="24"
@@ -295,7 +349,7 @@
               <span>Gauges Indicator</span>
             </a>
 
-            <a href="#" class="sidebar-item" onclick="toggleActive(this)">
+            <a href="#charts" class="sidebar-item" onclick="toggleActive(this)">
               <svg
                 width="24"
                 height="24"
@@ -479,39 +533,6 @@
 
           <div class="content">
             <div class="row">
-              <!--LAST UPDATE-->
-              <p>
-                <span class="date-time">
-                  Last update: <span id="lastUpdate"></span>
-                </span>
-              </p>
-
-              <p class="checkbox">
-                Cards:
-                <input
-                  type="checkbox"
-                  id="cards-checkbox"
-                  name="cards-checkbox"
-                  checked
-                />
-                Gauges:
-                <input
-                  type="checkbox"
-                  id="gauges-checkbox"
-                  name="gauges-checkbox"
-                  checked
-                />
-                Charts:
-                <input
-                  type="checkbox"
-                  id="charts-checkbox"
-                  name="charts-checkbox"
-                  unchecked
-                />
-              </p>
-
-              <hr>
-
               <div class="col-12">
                 <h2 class="content-title" id="monitoring-cards">
                   Monitoring Cards
@@ -639,18 +660,20 @@
               </div>
             </div>
           </div>
-          
-          <!-- TANK CONTROL -->
+
+          <!-- GAUGES INDICATOR -->
           <div class="content">
             <div class="row">
               <div class="col-12">
-                <h2 class="content-title" id="tank-control">Tank Control</h2>
+                <h2 class="content-title" id="gauges-indicator">
+                  Gauges Indicator
+                </h2>
                 <h5 class="content-desc mb-4">
-                  Switch Button to Control The Tank
+                  Gauges Indicator to Check Condition Visually
                 </h5>
               </div>
 
-              <!-- AUTOMATION -->
+              <!-- Temperature -->
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="sensor-card">
                   <div
@@ -659,22 +682,174 @@
                     <div
                       class="d-flex flex-column justify-content-between align-items-start"
                     >
-                      <h5 class="content-desc">Automation</h5>
+                      <h5 class="content-desc">Temperature</h5>
+                      <canvas id="gauge-temperature"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                      <div class="progress">
-                        <div class="toggle-btn" id="unact">
-                          <div class="inner-circle"></div>
-                        </div>
+              <!-- Turbidity -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Turbidity</h5>
+                      <canvas id="gauge-turbidity"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                        <div class="toggle-btn active" id="act">
-                          <div class="inner-circle"></div>
-                        </div>
-                      </div>
+              <!-- WATER LEVEL -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Water Level</h5>
+                      <canvas id="gauge-water-level"></canvas>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- CHARTS -->
+          <div class="content">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="content-title" id="charts">Charts</h2>
+                <h5 class="content-desc mb-4">
+                  Charts to Monitor the Performance
+                </h5>
+              </div>
+
+              <!--SET NUMBER OF READINGS INPUT FIELD-->
+              <div class="num-readings">
+                <p>
+                  Number of readings: <input type="number" id="charts-range" />
+                </p>
+              </div>
+
+              <!-- Temperature Chart -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Temperature</h5>
+                      <div id="chart-temperature" class="chart-container"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Water-Level Chart -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Water Level</h5>
+                      <div id="chart-water-level" class="chart-container"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Water Flow Chart -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Water Flow</h5>
+                      <div id="chart-water-flow" class="chart-container"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Turbidity Chart -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Turbidity</h5>
+                      <div id="chart-turbidity" class="chart-container"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--BUTTONS TO HANDLE DATA-->
+          <p>
+            <!--View data button-->
+            <button id="view-data-button">View all data</button>
+
+            <!--Hide data button-->
+            <button id="hide-data-button" style="display: none">
+              Hide data
+            </button>
+
+            <!--Delete data button-->
+            <button id="delete-button" class="deletebtn">Delete data</button>
+          </p>
+
+          <!--Modal to delete data-->
+          <div id="delete-modal" class="modal" sytle="display:none">
+            <span
+              onclick="document.getElementById('delete-modal').style.display='none'"
+              class="close"
+              title="Close Modal"
+            ></span>
+
+            <form id="delete-data-form" class="modal-content" action="/">
+              <div class="container">
+                <h1>Delete Data</h1>
+                <p>Are you sure you want to delete all data from database?</p>
+                <div class="clearfix">
+                  <button
+                    type="button"
+                    onclick="document.getElementById('delete-modal').style.display='none'"
+                    class="cancelbtn"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    onclick="document.getElementById('delete-modal').style.display='none'"
+                    class="deletebtn"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
 
         </div>
