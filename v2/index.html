@@ -56,7 +56,7 @@
     <script src="https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
 
     <!--web icon-->
-    <link rel="icon" type="image/png" href="../img/logo-crop.png" />
+    <link rel="icon" type="image/png" href="../img/logo intellitank.png" />
   </head>
 
   <body>
@@ -64,9 +64,18 @@
 
     <!--LOGIN FORM-->
     <form id="login-form" style="display: none">
+      <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p id="popup-message"></p>
+      </div>
 
       <div class="topnav">
-        <h1><img src="../img/logo-crop.png" alt="logo">Intellitank</h1>
+        <h1>
+          <img
+            src="../img/logo intellitank whitepng.png"
+            alt="logo"
+          />Intellitank
+        </h1>
         <h5>A09 - Capstone Project</h5>
       </div>
 
@@ -88,7 +97,6 @@
         />
 
         <button type="submit" id="login-button">Login</button>
-        <p id="error-message" style="color: red"></p>
       </div>
     </form>
 
@@ -98,7 +106,7 @@
           <aside class="sidebar">
             <a href="index.html" class="sidebar-logo">
               <div class="d-flex justify-content-start align-items-center">
-                <img src="../img/logo-crop.png" alt="intellitank-logo" />
+                <img src="../img/logo intellitank.png" alt="intellitank-logo" />
                 <span>Intellitank</span>
               </div>
 
@@ -433,6 +441,32 @@
                 </span>
               </p>
 
+              <p class="checkbox">
+                Cards:
+                <input
+                  type="checkbox"
+                  id="cards-checkbox"
+                  name="cards-checkbox"
+                  checked
+                />
+                Gauges:
+                <input
+                  type="checkbox"
+                  id="gauges-checkbox"
+                  name="gauges-checkbox"
+                  checked
+                />
+                Charts:
+                <input
+                  type="checkbox"
+                  id="charts-checkbox"
+                  name="charts-checkbox"
+                  unchecked
+                />
+              </p>
+
+              <hr>
+
               <div class="col-12">
                 <h2 class="content-title" id="monitoring-cards">
                   Monitoring Cards
@@ -524,6 +558,7 @@
             </div>
           </div>
 
+          <!-- TANK CONTROL -->
           <div class="content">
             <div class="row">
               <div class="col-12">
@@ -559,6 +594,44 @@
               </div>
             </div>
           </div>
+          
+          <!-- TANK CONTROL -->
+          <div class="content">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="content-title" id="tank-control">Tank Control</h2>
+                <h5 class="content-desc mb-4">
+                  Switch Button to Control The Tank
+                </h5>
+              </div>
+
+              <!-- AUTOMATION -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div
+                      class="d-flex flex-column justify-content-between align-items-start"
+                    >
+                      <h5 class="content-desc">Automation</h5>
+
+                      <div class="progress">
+                        <div class="toggle-btn" id="unact">
+                          <div class="inner-circle"></div>
+                        </div>
+
+                        <div class="toggle-btn active" id="act">
+                          <div class="inner-circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -1,3 +1,16 @@
+function openPopup(message) {
+  var popup = document.getElementById('popup');
+  var popupMessage = document.getElementById('popup-message');
+
+  popupMessage.innerHTML = message;
+  popup.style.display = 'block';
+}
+
+function closePopup() {
+  var popup = document.getElementById('popup');
+  popup.style.display = 'none';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   // listen for auth status changes
   auth.onAuthStateChanged((user) => {
@@ -29,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(email);
       })
       .catch((error) => {
+        openPopup('Akun tidak ditemukan.');
         const errorCode = error.code;
         const errorMessage = error.message;
         document.getElementById('error-message').innerHTML = errorMessage;
