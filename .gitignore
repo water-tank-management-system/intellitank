@@ -3,3 +3,7 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+.vscode/tasks.json
+.vscode/.vscode
+.vscode/.vscodeignore
+node_modules
