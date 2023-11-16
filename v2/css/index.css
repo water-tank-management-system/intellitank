@@ -348,9 +348,10 @@ button:hover {
 .nav-input-group {
   display: flex;
   justify-content: space-between;
+  flex: 1;
   align-items: center;
   height: 46px;
-  padding: 0 18px;
+  padding: 0 0px;
   width: 100%;
   background: #fff;
   border-radius: 100px;
@@ -376,13 +377,13 @@ button:hover {
 .nav-input {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: left;
   font-style: italic;
   font-weight: 300;
   font-size: 12px;
   line-height: 18px;
   color: #ABB3C4;
-  width: 100%;
+  width: 100%;  
 }
 @media (min-width: 576px) {
   .nav-input {
@@ -401,11 +402,11 @@ button:hover {
   color: #4640DE;
 }
 .content {
-  padding: 10px 14px 24px 14px;
+  padding: 24px 14px 24px 14px;
 }
 @media (min-width: 1200px) {
   .content {
-    padding: 0px 64px 0px 0px;
+    padding: 10px 64px 10px 10px;
   }
 }
 

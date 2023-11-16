@@ -37,50 +37,56 @@
       // Make auth and database references
       const auth = firebase.auth();
       const db = firebase.database();
-      const messaging=firebase.messaging();
+      const messaging = firebase.messaging();
       function IntitalizeFireBaseMessaging() {
         messaging
-            .requestPermission()
-            .then(function () {
-                console.log("Notification Permission");
-                return messaging.getToken(messaging, {vapidKey: "BMCVXOdqV6lE8lB5R_G4ifzGVaLiXomi_CA0ZcwfF8q9IH-D4lRS-9XcHs2ANCO1y4nbTNkpaZsPLIOx3cmqSYY"});
-            })
-            .then(function (token) {
-                console.log("Token : "+token);
-            })
-            .catch(function (reason) {
-                console.log(reason);
+          .requestPermission()
+          .then(function () {
+            console.log('Notification Permission');
+            return messaging.getToken(messaging, {
+              vapidKey:
+                'BMCVXOdqV6lE8lB5R_G4ifzGVaLiXomi_CA0ZcwfF8q9IH-D4lRS-9XcHs2ANCO1y4nbTNkpaZsPLIOx3cmqSYY',
             });
+          })
+          .then(function (token) {
+            console.log('Token : ' + token);
+          })
+          .catch(function (reason) {
+            console.log(reason);
+          });
       }
 
       messaging.onMessage(function (payload) {
         console.log(payload);
-        const notificationOption={
-            body:payload.notification.body,
-            icon:payload.notification.icon
+        const notificationOption = {
+          body: payload.notification.body,
+          icon: payload.notification.icon,
         };
 
-        if(Notification.permission==="granted"){
-            var notification=new Notification(payload.notification.title,notificationOption);
+        if (Notification.permission === 'granted') {
+          var notification = new Notification(
+            payload.notification.title,
+            notificationOption
+          );
 
-            notification.onclick=function (ev) {
-                ev.preventDefault();
-                window.open(payload.notification.click_action,'_blank');
-                notification.close();
-            }
+          notification.onclick = function (ev) {
+            ev.preventDefault();
+            window.open(payload.notification.click_action, '_blank');
+            notification.close();
+          };
         }
-
       });
       messaging.onTokenRefresh(function () {
-        messaging.getToken()
-            .then(function (newtoken) {
-                console.log("New Token : "+ newtoken);
-            })
-            .catch(function (reason) {
-                console.log(reason);
-            })
-      })
-    IntitalizeFireBaseMessaging();
+        messaging
+          .getToken()
+          .then(function (newtoken) {
+            console.log('New Token : ' + newtoken);
+          })
+          .catch(function (reason) {
+            console.log(reason);
+          });
+      });
+      IntitalizeFireBaseMessaging();
     </script>
 
     <!-- include highchartsjs to build the charts-->
@@ -532,7 +538,6 @@
           </div>
 
           <div class="content" id="#cards-div">
-
             <!-- Cards -->
             <div class="row">
               <div class="col-12">
@@ -640,9 +645,7 @@
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
-                    <div
-                      class="d-flex flex-column justify-content-between align-items-start"
-                    >
+                    <div>
                       <h5 class="content-desc">Automation</h5>
 
                       <div class="progress">
@@ -661,10 +664,7 @@
             </div>
           </div>
 
-          
-          <div class="content" id="controls-div">
-            
-          </div>
+          <div class="content" id="controls-div"></div>
 
           <!-- GAUGES INDICATOR -->
           <div class="content" id="gauges-div">
@@ -687,12 +687,14 @@
                     <div
                       class="d-flex flex-column justify-content-between align-items-start"
                     >
-                      <h5 class="content-desc" id="gauge-wl-desc">Water Level</h5>
+                      <h5 class="content-desc" id="gauge-wl-desc">
+                        Water Level
+                      </h5>
                       <canvas id="gauge-water-level"></canvas>
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
 
               <!-- Temperature -->
               <div class="col-12 col-md-6 col-lg-4">
@@ -759,9 +761,9 @@
                     </div>
                   </div>
                 </div>
-              </div>                        
+              </div>
             </div>
-            
+
             <div class="row">
               <!-- Water-Level Chart -->
               <div>
@@ -779,7 +781,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="row">
               <!-- Water Flow Chart -->
               <div>
@@ -797,7 +799,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="row">
               <!-- Turbidity Chart -->
               <div>
@@ -861,6 +863,32 @@
                 </div>
               </div>
             </form>
+          </div>
+
+          <!--TABLE WITH ALL DATA-->
+          <div class="content">
+            <div class="row" id="table-container" style="display: none">
+              <div class="col-12">
+                <h2 class="content-title" id="charts">All Data Table</h2>
+                <h5 class="content-desc mb-4">Table to Visualize the data</h5>
+              </div>
+
+              <table id="readings-table">
+                <tr id="theader">
+                  <th>Timestamp</th>
+                  <th>Tmp (ºC)</th>
+                  <th>Lvl (%)</th>
+                  <th>Flw (L/min)</th>
+                  <th>Tur (NTU)</th>
+                </tr>
+                <tbody id="tbody"></tbody>
+              </table>
+              <p>
+                <button id="load-data" style="display: none">
+                  More results...
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>

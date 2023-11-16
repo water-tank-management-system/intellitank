@@ -21,7 +21,7 @@ function createTemperatureGauge() {
       {
         from: 30,
         to: 40,
-        color: '#f44336',
+        color: 'red',
       },
     ],
     colorPlate: '#fff',
@@ -61,7 +61,7 @@ function createWaterLevelGauge() {
       {
         from: 0,
         to: 25,
-        color: '#f44336',
+        color: 'red',
       },
     ],
     colorPlate: '#fff',
@@ -104,7 +104,7 @@ function createTurbidityGauge() {
       {
         from: 30,
         to: 1000,
-        color: '#f44336',
+        color: 'red',
       },
     ],
     colorPlate: '#fff',
