@@ -661,6 +661,85 @@
                   </div>
                 </div>
               </div>
+
+              <!-- CLEANING-STATE -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div>
+                      <h5 class="content-desc">Cleaning State</h5>
+
+                      <div class="progress">
+                        <div class="toggle-btn" id="uncln">
+                          <div class="inner-circle"></div>
+                        </div>
+
+                        <div class="toggle-btn active" id="cln">
+                          <div class="inner-circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FILLING-STATE -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div>
+                      <h5 class="content-desc">Filling State</h5>
+
+                      <div class="progress">
+                        <div class="toggle-btn" id="unfil">
+                          <div class="inner-circle"></div>
+                        </div>
+
+                        <div class="toggle-btn active" id="fil">
+                          <div class="inner-circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- INDICATOR -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="sensor-card">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div>
+                      <h5 class="content-desc">Tank Indicator</h5>
+
+                      <div class="indicators-container">
+                        <!-- INDICATOR FOR WATER LEVEL -->
+                        <div class="indicator-wrapper">
+                          <p>Empty</p>
+                          <div
+                            id="water-level-indicator"
+                            class="indicator"
+                          ></div>
+                        </div>
+
+                        <!-- INDICATOR FOR TURBIDITY -->
+                        <div class="indicator-wrapper">
+                          <p>Dirty</p>
+                          <div
+                            id="dirty-water-indicator"
+                            class="indicator"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -842,7 +921,7 @@
             ></span>
 
             <form id="delete-data-form" class="modal-content" action="/">
-              <div class="container">
+              <div class="delete-container">
                 <h1>Delete Data</h1>
                 <p>Are you sure you want to delete all data from database?</p>
                 <div class="clearfix">
